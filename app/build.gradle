@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+}
+android {
+    compileSdkVersion 33
+    def DATABASE_VERSION = '"' + "1" + '"';
+    def DATABASE_NAME = '"' + "BookShareDB" + '"';
+
+    defaultConfig {
+        applicationId "com.example.bookshare"
+        minSdkVersion 24
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.buildTypes.each { type ->
+        type.buildConfigField('String', 'DATABASE_VERSION', DATABASE_VERSION)
+        type.buildConfigField('String', 'DATABASE_NAME', DATABASE_NAME)
+        type.buildConfigField('String', 'GOOGLE_BOOK_KEY', '"AIzaSyAIAF_0JsOJ1rZ8mRt2PSoYfVh-gNINIp4"')
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.core:core-ktx:1.9.0'
+
+    testImplementation 'junit:junit:4.13.2'
+
+    /** Appcompat library **/
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    /** Waiting Dots (https://github.com/tajchert/WaitingDots) **/
+    implementation 'pl.tajchert:waitingdots:0.2.0'
+
+    /** Recycler view **/
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+
+    /** Card View **/
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+
+    /** Picasso (http://square.github.io/picasso/) **/
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    /** Design Library **/
+    implementation 'com.google.android.material:material:1.8.0'
+
+    /** Firebase client library **/
+    implementation 'com.firebase:firebase-client-android:2.5.2'
+
+    /** FirebaseUI library **/
+    implementation 'com.firebaseui:firebase-ui:8.0.2'
+
+    /** Google auth sdk **/
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+
+
+    /** Google Analytics **/
+    implementation 'com.google.android.gms:play-services-analytics:18.0.2'
+    /** Circular Image view **/
+    implementation 'com.mikhaellopez:circularimageview:4.3.1'
+
+    /** Barcode scanning library **/
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+    implementation 'com.android.support:multidex:2.0.1'
+}
