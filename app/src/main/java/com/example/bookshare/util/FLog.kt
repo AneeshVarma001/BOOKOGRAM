@@ -36,6 +36,6 @@ object FLog {
     }
 
     private fun makeLogNameSpace(ob: Any): String {
-        return "Fiboku => " + ob.javaClass.name
+        return "Bookogram => " + ob.javaClass.name
     }
 }
